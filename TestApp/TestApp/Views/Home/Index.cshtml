@@ -1,0 +1,39 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+<style>
+    td, th {
+    border: 1px solid #dddddd;
+    text-align: center;
+    padding: 8px;
+}
+</style>
+
+<div ng-app="TestApp" ng-controller="diskController">
+    <h3>Current path: {{curPath}}</h3>
+    <table style="width:100%">
+        <tr>
+            <th>Up to 10MB</th>
+            <th>From 10MB to 50MB</th>
+            <th>More than 100MB</th>
+        </tr>
+        <tr>
+            <td ng-repeat="size in sizes track by $index">{{size}}</td>
+        </tr>
+    </table>
+    <p><br /></p>
+    <ul>
+        <li style="list-style-type:none" ng-repeat="item in items" ng-click="getDirectory(item)">
+            <a style="cursor:pointer">{{item}}</a>
+        </li>
+        <li style="list-style-type:none" ng-repeat="file in folderfiles">
+            {{file}}
+        </li>
+    </ul>
+</div>
+
+@section scripts {
+    @Scripts.Render("~/Scripts/angular.js")
+    @Scripts.Render("~/Scripts/disk_controller.js")
+}
